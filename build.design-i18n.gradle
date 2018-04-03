@@ -1,0 +1,66 @@
+
+apply plugin: 'java'
+tasks.withType(JavaCompile){
+		options.encoding = 'UTF-8'
+}
+//指定构建的jdk版本
+sourceCompatibility=1.6
+
+//jar包版本
+version='10.0'
+//jar包名称
+jar{
+	baseName='fr-design-i18n'
+}
+//工程路径
+def srcDir="."
+def baseDir=".."
+//源码所在位置
+	sourceSets{   
+		main{
+			java{
+				srcDirs=["${srcDir}/i18-design/src"]
+			}
+		}		
+	
+	}
+//获取什么分支名
+FileTree files =fileTree(dir:'./',include:'build.*.gradle')
+def buildDir=files[0].path.substring(0,files[0].path.lastIndexOf ('\\'))
+def branchName=buildDir.substring(buildDir.lastIndexOf ('\\')+1)
+
+//指明无法编译文件所在路径
+def dataContent ={def dir ->
+		copySpec{
+			from ("${dir}"){
+				exclude '**/.setting/**','.classpath','.project','**/*.java','**/*.db','**/*.g','**/package.html'
+			}
+		}
+}
+
+//copy无法编译的文件参与jar任务
+task copyFiles(type:Copy,dependsOn:compileJava){
+	copy{
+println "${srcDir}"
+		with dataContent.call("${srcDir}/i18n-design/src") 
+		into 'build/classes/main'
+	}
+}
+//压缩项目中的js文件
+task compressJS{
+	ant.taskdef(name:'yuicompress',classname:'com.yahoo.platform.yui.compressor.YUICompressTask'){
+		classpath {
+			fileset(dir:'../lib4build',includes:'**/*.jar')
+		}
+	}
+	ant.yuicompress(linebreak:"500",warn:"false", munge:"yes",preserveallsemicolons:"false",charset:"utf-8",encoding:"utf-8",outputfolder:'build/classes/main'){
+		fileset (dir:"${srcDir}/i18n-design/src"){
+			include (name:'**/*.js')
+			include (name:'**/*.css')
+		}
+	}
+}
+jar.dependsOn compressJS
+
+
+
