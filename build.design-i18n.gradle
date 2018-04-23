@@ -19,7 +19,11 @@ def baseDir=".."
 	sourceSets{   
 		main{
 			java{
-				srcDirs=["${srcDir}/i18-design/src"]
+				srcDirs=[
+					"${srcDir}/design-i18n-chart/src",
+					"${srcDir}/design-i18n-report/src",
+
+					]
 			}
 		}		
 	
@@ -42,7 +46,8 @@ def dataContent ={def dir ->
 task copyFiles(type:Copy,dependsOn:compileJava){
 	copy{
 println "${srcDir}"
-		with dataContent.call("${srcDir}/i18n-design/src") 
+		with dataContent.call("${srcDir}/design-i18n-report/src") 
+		with dataContent.call("${srcDir}/design-i18n-chart/src") 
 		into 'build/classes/main'
 	}
 }
@@ -54,7 +59,11 @@ task compressJS{
 		}
 	}
 	ant.yuicompress(linebreak:"500",warn:"false", munge:"yes",preserveallsemicolons:"false",charset:"utf-8",encoding:"utf-8",outputfolder:'build/classes/main'){
-		fileset (dir:"${srcDir}/i18n-design/src"){
+		fileset (dir:"${srcDir}/design-i18n-report/src"){
+			include (name:'**/*.js')
+			include (name:'**/*.css')
+		}
+		fileset (dir:"${srcDir}/design-i18n-chart/src"){
 			include (name:'**/*.js')
 			include (name:'**/*.css')
 		}
