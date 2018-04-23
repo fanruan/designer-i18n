@@ -9,6 +9,6 @@
         <version>10.0-FEATURE-SNAPSHOT</version>
     </parent>
     <groupId>com.fr.core</groupId>
-    <artifactId>designer-i18n-report</artifactId>
+    <artifactId>design-i18n-report</artifactId>
     <version>10.0-FEATURE-SNAPSHOT</version>
 </project>
