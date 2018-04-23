@@ -21,8 +21,7 @@ def baseDir=".."
 			java{
 				srcDirs=[
 					"${srcDir}/design-i18n-chart/src",
-					"${srcDir}/design-i18n-report/src",
-
+					"${srcDir}/design-i18n-report/src"
 					]
 			}
 		}		
