@@ -6,9 +6,9 @@
     <parent>
         <groupId>com.fr.report</groupId>
         <artifactId>design-i18n</artifactId>
-        <version>10.0-FEATURE-SNAPSHOT</version>
+        <version>10.0-RELEASE-SNAPSHOT</version>
     </parent>
     <groupId>com.fr.core</groupId>
     <artifactId>design-i18n-report</artifactId>
-    <version>10.0-FEATURE-SNAPSHOT</version>
+    <version>10.0-RELEASE-SNAPSHOT</version>
 </project>
