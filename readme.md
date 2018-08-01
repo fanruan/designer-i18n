@@ -4,10 +4,10 @@
 
 命名规范：
 
-Fine-Design-Basic\_xxx\_xxx
+Fine-Design_Basic\_xxx\_xxx
 
-Fine-Design-Report\_xxx\_xxx
+Fine-Design_Report\_xxx\_xxx
 
-Fine-Design-Chart\_xxx\_xxx
+Fine-Design_Chart\_xxx\_xxx
 
-Fine-Design-Form\_xxx\_xxx。
+Fine-Design_Form\_xxx\_xxx。
